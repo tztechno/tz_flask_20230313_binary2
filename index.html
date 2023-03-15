@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Flask App</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="//code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+
+    <style>
+        #slider {
+            width: 5cm;
+            height: 10px;
+        }
+
+        #slider-value {
+            margin-top: 10px;
+            font-size: 1.2em;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Binary Image</h2>
+
+    <form method="post" action="/">
+        <div id="slider"></div>
+        <input type="hidden" name="thres" id="thres_val">
+        <button type="submit">Submit</button>
+    </form>
+    <div id="slider-value">128</div>
+
+    <script>
+        $(function () {
+            var slider = $("#slider");
+            var output = $("#slider-value");
+            var thres_val = $("#thres_val");
+
+            slider.slider({
+                min: 0,
+                max: 255,
+                value: 128,
+                slide: function (event, ui) {
+                    output.text(ui.value);
+                    thres_val.val(ui.value);
+                }
+            });
+
+            output.text(slider.slider("value"));
+        });
+    </script>
+
+    <br><br>
+    <h3>Threshold value is {{thres}}<h3>
+            {% if graph_html %}
+            <div id="graph">{{ graph_html|safe }}</div>
+            {% endif %}
+            <br><br>
+
+</body>
+
+</html>
