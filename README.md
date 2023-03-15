@@ -10,4 +10,4 @@
 - app.py
 
 ## view
-<img src='binary.png' width='800'>
+<img src='binary2.png' width='800'>
